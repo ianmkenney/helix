@@ -1,0 +1,36 @@
+[[language]]
+name = "latex"
+scope = "source.tex"
+injection-regex = "tex"
+file-types = ["tex"]
+roots = []
+comment-token = "%"
+language-server = { command = "texlab" }
+indent = { tab-width = 4, unit = "\t" }
+
+[language.config.texlab.build]
+onSave = true
+forwardSearchAfter = true
+
+[language.config.texlab.forwardSearch]
+executable = "qpdfview"
+args = ["--unique", "%p#src:%f:%l:1"]
+
+[language.config.texlab.chktex]
+onOpenAndSave = true
+onEdit = true
+
+[language.config.texlab.diagnostics]
+ignoredPatterns = ["You should enclose the previous parenth*", "You should put a space in front of parenth*", "Command terminated with space*"]
+
+[[grammar]]
+name = "latex"
+source = { git = "https://github.com/latex-lsp/tree-sitter-latex", rev = "8c75e93cd08ccb7ce1ccab22c1fbd6360e3bcea6" }
+
+[[language]]
+name = "python"
+indent = { tab-width = 4, unit = "    " }
+
+[language.config.pylsp.plugins.pydocstyle]
+enabled = true
+convention = "google"
